@@ -1,7 +1,5 @@
 let btn = document.querySelector("button");
-
 let ul = document.querySelector("ul");
-
 let inp = document.querySelector("input");
 
 let taskCounter =
@@ -32,16 +30,23 @@ function createTask(
     completedDate = null
 ) {
 
-    let item = document.createElement("li");
+    let item =
+        document.createElement("li");
+
+
 
     if (completed) {
         item.classList.add("done");
     }
 
+
+
     item.setAttribute(
         "data-priority",
         priority
     );
+
+
 
     if (completedDate) {
 
@@ -51,8 +56,13 @@ function createTask(
         );
     }
 
+
+
     let currentTime =
-        time || new Date().toLocaleTimeString();
+        time ||
+        `Added at: ${new Date().toLocaleTimeString()}`;
+
+
 
     item.innerHTML = `
 
@@ -63,7 +73,7 @@ function createTask(
             </span>
 
             <small class="time">
-                Added at: ${currentTime}
+                ${currentTime}
             </small>
 
         </div>
@@ -89,6 +99,8 @@ function createTask(
         </div>
     `;
 
+
+
     ul.appendChild(item);
 
     updateCounter();
@@ -98,30 +110,47 @@ function createTask(
 
 
 
+
+
 // ADD TASK
-btn.addEventListener("click", function () {
+btn.addEventListener(
+    "click",
+    function () {
 
-    let task =
-        inp.value.trim();
+        let task =
+            inp.value.trim();
 
-    if (task === "") {
 
-        alert("Please enter a task");
 
-        return;
+        if (task === "") {
+
+            alert(
+                "Please enter a task"
+            );
+
+            return;
+        }
+
+
+
+        let priority =
+            prioritySelect.value;
+
+
+
+        createTask(
+            task,
+            false,
+            priority
+        );
+
+
+
+        inp.value = "";
     }
+);
 
-    let priority =
-        prioritySelect.value;
 
-    createTask(
-        task,
-        false,
-        priority
-    );
-
-    inp.value = "";
-});
 
 
 
@@ -139,12 +168,15 @@ inp.addEventListener(
 
 
 
+
+
 // EVENT DELEGATION
 ul.addEventListener(
     "click",
     function(event){
 
-        let target = event.target;
+        let target =
+            event.target;
 
         let listItem =
             target.closest("li");
@@ -168,18 +200,22 @@ ul.addEventListener(
 
             listItem.classList.toggle("done");
 
+
+
             if (
                 listItem.classList.contains("done")
             ) {
 
                 let today =
-                    new Date().toLocaleDateString();
+                    new Date()
+                    .toLocaleDateString();
 
                 listItem.setAttribute(
                     "data-completed-date",
                     today
                 );
             }
+
             else {
 
                 listItem.removeAttribute(
@@ -196,13 +232,17 @@ ul.addEventListener(
         ) {
 
             let textSpan =
-                listItem.querySelector(".task-text");
+                listItem.querySelector(
+                    ".task-text"
+                );
 
             let updatedTask =
                 prompt(
                     "Edit your task",
                     textSpan.innerText
                 );
+
+
 
             if (
                 updatedTask !== null &&
@@ -214,6 +254,8 @@ ul.addEventListener(
             }
         }
 
+
+
         updateCounter();
 
         saveTasks();
@@ -222,17 +264,23 @@ ul.addEventListener(
 
 
 
+
+
 // UPDATE COUNTER
 function updateCounter() {
 
     let totalTasks =
-        document.querySelectorAll("li").length;
+        document.querySelectorAll("li")
+        .length;
 
     let completedTasks =
-        document.querySelectorAll(".done").length;
+        document.querySelectorAll(".done")
+        .length;
 
     let pendingTasks =
         totalTasks - completedTasks;
+
+
 
     taskCounter.innerText =
 
@@ -241,11 +289,13 @@ function updateCounter() {
 
 
     // DAILY COMPLETED TASKS
-
     let today =
-        new Date().toLocaleDateString();
+        new Date()
+        .toLocaleDateString();
 
     let dailyCompleted = 0;
+
+
 
     document.querySelectorAll("li")
     .forEach((task) => {
@@ -260,10 +310,14 @@ function updateCounter() {
         }
     });
 
+
+
     dailyCounter.innerText =
 
         `Daily Completed Tasks: ${dailyCompleted}`;
 }
+
+
 
 
 
@@ -272,24 +326,40 @@ function saveTasks() {
 
     let tasks = [];
 
+
+
     document.querySelectorAll("li")
     .forEach((li) => {
 
         tasks.push({
 
             text:
-                li.querySelector(".task-text")
-                .innerText,
+                li.querySelector(
+                    ".task-text"
+                ).innerText,
+
+
 
             completed:
-                li.classList.contains("done"),
+                li.classList.contains(
+                    "done"
+                ),
+
+
 
             priority:
-                li.getAttribute("data-priority"),
+                li.getAttribute(
+                    "data-priority"
+                ),
+
+
 
             time:
-                li.querySelector(".time")
-                .innerText,
+                li.querySelector(
+                    ".time"
+                ).innerText,
+
+
 
             completedDate:
                 li.getAttribute(
@@ -298,11 +368,15 @@ function saveTasks() {
         });
     });
 
+
+
     localStorage.setItem(
         "tasks",
         JSON.stringify(tasks)
     );
 }
+
+
 
 
 
@@ -313,6 +387,8 @@ function loadTasks() {
         JSON.parse(
             localStorage.getItem("tasks")
         ) || [];
+
+
 
     tasks.forEach((task) => {
 
@@ -325,8 +401,12 @@ function loadTasks() {
         );
     });
 
+
+
     updateCounter();
 }
+
+
 
 
 
@@ -342,6 +422,8 @@ filterButtons.forEach((button) => {
                     "data-filter"
                 );
 
+
+
             document.querySelectorAll("li")
             .forEach((task) => {
 
@@ -354,21 +436,29 @@ filterButtons.forEach((button) => {
 
                         break;
 
+
+
                     case "completed":
 
                         task.style.display =
 
-                            task.classList.contains("done")
+                            task.classList.contains(
+                                "done"
+                            )
                             ? "flex"
                             : "none";
 
                         break;
 
+
+
                     case "pending":
 
                         task.style.display =
 
-                            !task.classList.contains("done")
+                            !task.classList.contains(
+                                "done"
+                            )
                             ? "flex"
                             : "none";
 

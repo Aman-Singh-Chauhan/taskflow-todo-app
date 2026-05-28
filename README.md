@@ -22,7 +22,7 @@ This project helps users manage daily tasks efficiently with features like task 
 
 * HTML5
 * CSS3
-* JavaScript (ES6)
+* JavaScript 
 
 ---
 
@@ -34,7 +34,7 @@ https://aman-singh-chauhan.github.io/taskflow-todo-app/
 
 ## 📸 Screenshot
 
-![TaskFlow Todo App](screenshots/homepage.png)
+![TODO APP](screenshots/homepage.png)
 
 ---
 
