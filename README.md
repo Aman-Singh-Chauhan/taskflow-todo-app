@@ -21,7 +21,7 @@ A modern Todo App made using HTML, CSS, and JavaScript.
 
 ## Live Demo
 
-Coming Soon
+https://aman-singh-chauhan.github.io/taskflow-todo-app/
 
 ## Author
 
