@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Todo App</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>🚀 Todo App</h1>
+
+        <!-- INPUT SECTION -->
+        <div class="input-section">
+
+            <input type="text" placeholder="Enter your task">
+
+            <select id="priority-select">
+
+                <option value="High">High</option>
+
+                <option value="Medium" selected>
+                    Medium
+                </option>
+
+                <option value="Low">Low</option>
+
+            </select>
+
+            <button>Add Task</button>
+
+        </div>
+
+        <!-- FILTERS -->
+        <div class="filters">
+
+            <button class="filter-btn" data-filter="all">
+                All
+            </button>
+
+            <button class="filter-btn" data-filter="completed">
+                Completed
+            </button>
+
+            <button class="filter-btn" data-filter="pending">
+                Pending
+            </button>
+
+        </div>
+
+        <!-- COUNTERS -->
+        <p id="task-counter">
+            Total: 0
+        </p>
+
+        <p id="daily-counter">
+            Daily Completed Tasks: 0
+        </p>
+
+        <!-- TASK LIST -->
+        <ul></ul>
+
+    </div>
+
+    <script src="app.js"></script>
+
+</body>
+
+</html>
